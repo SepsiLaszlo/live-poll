@@ -1,9 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Text:</strong>
-  <%= @question.text %>
-</p>
+<div>
+</div>
+<h1> Kérdés</h1>
+<table>
+
+</table>
+
+<%= form_with id: 'questionForm' do |form| %>
+ <%= form.collection_radio_buttons :answer_id, @question.answers, :id, :text, {checked: @question.answers.first.id } %>
+<% end %>
 
 <%= link_to 'Edit', edit_question_path(@question) %> |
 <%= link_to 'Back', questions_path %>
