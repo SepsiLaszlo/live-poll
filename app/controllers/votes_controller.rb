@@ -26,15 +26,16 @@ class VotesController < ApplicationController
   def create
     @vote = Vote.new(vote_params)
 
-    respond_to do |format|
-      if @vote.save
-        format.html { redirect_to @vote, notice: 'Vote was successfully created.' }
-        format.json { render :show, status: :created, location: @vote }
-      else
-        format.html { render :new }
-        format.json { render json: @vote.errors, status: :unprocessable_entity }
-      end
-    end
+    @vote.save
+    # respond_to do |format|
+    #   if @vote.save
+    #     format.html { redirect_to @vote, notice: 'Vote was successfully created.' }
+    #     format.json { render :show, status: :created, location: @vote }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @vote.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /votes/1
