@@ -1,15 +1,42 @@
+<style>
+    html, body {
+        background-color: rgb(59, 103, 141);
+    }
+</style>
+
+ <input type="hidden" id="questionId" value="<%= @question.id %>">
+
 <p id="notice"><%= notice %></p>
+<img src="https://simonyi.bme.hu/resources/footer/vik.svg" height="200px" id="image" class="section"></img>
 
-<div>
+<div class="section">
+  <h3>Milyen volt az előadás?</h3>
 </div>
-<h1> Kérdés</h1>
-<table>
 
-</table>
+<div class="section">
+  <h3>Beérkezett válaszok</h3>
+  <table>
+    <% @question.answers.each do |answer| %>
+    <tr>
+      <td><%= answer.text %></td>
+      <td id="<%= "answer-" + answer.id.to_s %>"><%= answer.votes.count %></td>
+    </tr>
+    <% end %>
+  </table>
+</div>
 
-<%= form_with id: 'questionForm' do |form| %>
- <%= form.collection_radio_buttons :answer_id, @question.answers, :id, :text, {checked: @question.answers.first.id } %>
-<% end %>
+<div class="section">
+  <h3>Saját válaszom</h3>
+  <form id="form">
+    <% @question.answers.each do |answer| %>
+    <input type="radio" name="vote" value="<%= answer.id %>">
+    <label><%= answer.text %></label><br>
+    <%end %>
+
+  </form>
+</div>
+
+<input class="submit" type="submit" form="form"/>
 
 <%= link_to 'Edit', edit_question_path(@question) %> |
 <%= link_to 'Back', questions_path %>

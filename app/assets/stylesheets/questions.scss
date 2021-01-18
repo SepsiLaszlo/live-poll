@@ -11,3 +11,50 @@
         margin: 4px;
     }
 }
+
+// Place all the styles related to the answers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.section {
+    width: 100%;
+    background-color:white;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+.section > h3 {
+    margin: 0;
+    background-color: rgb(5,42,75);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 20px;
+    font-size: 2em;
+    color: white;
+}
+
+.section > * {
+    margin: 20px;
+    width: calc(100% - 40px);
+    font-size: 1.2em;
+    font-family: Arial;
+}
+
+td {
+    padding: 3px;
+    border: 2px grey solid;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.submit {
+    border: 0px;
+    background-color: rgb(5,42,75);
+    color: white;
+    font-size: 1.4em;
+    margin-left: 15px;
+    padding: 5px;
+    border-radius: 5px;
+}
