@@ -11,10 +11,7 @@ function subscribeIfIdPresent() {
 }
 
 function submitVote() {
-    $.post('http://localhost:3000/votes',
-        { authenticity_token:'wq5TAMRMIfUKnG81mNHjz9ll/AIzT2d1y/VJqsdGxtd7SHFZ7vR6JIIiLM221OgygaIVI+22UlPXOM/sIDU5gg==',
-            "vote[answer_id]": ($("input[name=vote]:checked")[0].value)
-});
+    questionChannel.send({answer_id: $("input[name=vote]:checked")[0].value});
 }
 
 function getQuestionId() {
@@ -24,9 +21,9 @@ function getQuestionId() {
     return idElemnent.value;
 }
 
-
+let questionChannel = null;
 function createSubscription(questionId) {
-    consumer.subscriptions.create("QuestionChannel", {
+    questionChannel = consumer.subscriptions.create("QuestionChannel", {
         connected() {
             // Called when the subscription is ready for use on the server
             console.log("connected")
