@@ -11,6 +11,7 @@ function subscribeIfIdPresent() {
 }
 
 function submitVote() {
+    console.log("submit")
     questionChannel.send({answer_id: $("input[name=vote]:checked")[0].value});
 }
 
@@ -23,7 +24,7 @@ function getQuestionId() {
 
 let questionChannel = null;
 function createSubscription(questionId) {
-    questionChannel = consumer.subscriptions.create("QuestionChannel", {
+    questionChannel = consumer.subscriptions.create({channel:"QuestionChannel", room: questionId} , {
         connected() {
             // Called when the subscription is ready for use on the server
             console.log("connected")
