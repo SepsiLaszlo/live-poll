@@ -1,0 +1,38 @@
+version: '3.3'
+services:
+  db:
+    image: postgres:13.0
+    restart: always
+    environment:
+      POSTGRES_USER: livepoll
+      POSTGRES_PASSWORD: CHANGE-ME
+    volumes:
+      - database_folder:/var/lib/postgresql/data
+    networks:
+      - livepoll_network
+  web:
+    build: .
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    environment:
+      - RAILS_SERVE_STATIC_FILES=true
+      - RAILS_ENV=production
+      - DATABASE_PASSWORD=CHANGE-ME
+      - DATABASE_HOST=db
+    restart: always
+    ports:
+      - "3119:3000"
+    networks:
+      - livepoll_network
+    depends_on:
+      - db
+    volumes:
+      - public_folder:/live-poll/public
+networks:
+  livepoll_network:
+volumes:
+  database_folder:
+    external:
+      name: livepoll_database
+  public_folder:
+    external:
+      name: livepoll_public

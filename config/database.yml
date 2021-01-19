@@ -20,11 +20,12 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: localhost
-  user: postgres
-  password: postgres
+
 development:
   <<: *default
+  user: postgres
+  host: localhost
+  password: postgres
   database: live_poll_development
 
   # The specified database role being used to connect to postgres.
@@ -82,6 +83,7 @@ test:
 #
 production:
   <<: *default
+  host: <%= ENV['DATABASE_HOST'] %>
   database: live_poll_production
-  username: live_poll
-  password: <%= ENV['LIVE_POLL_DATABASE_PASSWORD'] %>
+  username: livepoll
+  password: <%= ENV['DATABASE_PASSWORD'] %>
