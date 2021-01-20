@@ -25,14 +25,9 @@ services:
       - livepoll_network
     depends_on:
       - db
-    volumes:
-      - public_folder:/live-poll/public
 networks:
   livepoll_network:
 volumes:
   database_folder:
     external:
       name: livepoll_database
-  public_folder:
-    external:
-      name: livepoll_public

@@ -1,7 +1,7 @@
 FROM ruby:2.7.1
 
-RUN mkdir /konyhasch
-WORKDIR /konyhasch
+RUN mkdir /live-poll
+WORKDIR /live-poll
 
 RUN gem install bundler -v 2.1.4
 COPY Gemfile .
