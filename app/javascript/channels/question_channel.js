@@ -12,6 +12,8 @@ function subscribeIfIdPresent() {
 
 function submitVote() {
     console.log("submit")
+
+    //send data over WebSocket
     questionChannel.send({answer_id: $("input[name=vote]:checked")[0].value});
 }
 
@@ -23,6 +25,8 @@ function getQuestionId() {
 }
 
 let questionChannel = null;
+
+//create WebSocket Subscription
 function createSubscription(questionId) {
     questionChannel = consumer.subscriptions.create({channel:"QuestionChannel", room: questionId} , {
         connected() {
